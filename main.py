@@ -1,4 +1,8 @@
 import random
+# En main.py
+from map_generator.terrain import generate_comprehensive_map, plot_maps, save_detailed_map, get_terrain_info
+import matplotlib.pyplot as plt
+
 
 class Organism:
     def __init__(self, energy=100):
@@ -83,6 +87,58 @@ def simulation():
     
     return results
 
-# Run the simulation and display the results
-corrected_simulation_results = simulation()
-corrected_simulation_results
+if __name__ == "__main__":
+
+   
+
+    # Usage
+    comprehensive_map2 = generate_comprehensive_map()
+    print("Map Generated Successfully!")
+    # Example usage
+    x, y = 50, 50  # Example coordinates
+    info = get_terrain_info(comprehensive_map2, x, y)
+    print("Terrain Information at (50, 50):", info)
+
+    # Save the detailed map
+    save_detailed_map(comprehensive_map2)
+
+    # Plot the maps
+    plot_maps(comprehensive_map2)
+
+    '''
+    
+
+    # Custom colormap: dark blue for sea, light blue for freshwater, and gradient for land
+    cmap = ListedColormap(['darkblue', 'lightblue', 'yellow', 'greenyellow', 'white'])
+
+    # Generate and classify the map
+    width, height = 100, 100
+    world_map = generate_map(width, height)
+    terrain_values = classify_terrain(world_map)
+
+    # Display the map with custom colors
+    plt.figure(figsize=(10, 8))
+    plt.imshow(terrain_values, cmap=cmap, interpolation='nearest')
+    plt.colorbar()
+    plt.title("Custom Terrain Map with Altitude Range -1000m to 5000m")
+    plt.show()
+
+    
+    # Generate temperature map
+    temperature_map = generate_temperature_map(world_map, width, height)
+
+    # For visualization, you might normalize and map these values to a colormap
+    plt.figure(figsize=(10, 8))
+    plt.imshow(temperature_map, cmap='coolwarm', interpolation='nearest')
+    plt.colorbar()
+    plt.title("Temperature Map")
+    plt.show()
+
+    # Example usage
+    x, y = 50, 50  # Example coordinates
+    info = get_terrain_info(terrain_values, world_map, x, y)
+    print(info)
+
+    # Save the map with detailed information
+    save_detailed_map(terrain_values, world_map, file_path="map_generator/map.txt")
+    '''
